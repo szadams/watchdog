@@ -2,11 +2,11 @@ package controllers
 
 import play.api._
 import play.api.mvc._
+import models.Server
 
 object Application extends Controller {
-  
+  val s: Server = new Server("First")
   def index = Action {
-    Ok(views.html.index("Your new application is ready."))
+    Ok(views.html.index(s.showAll/*"Check your console now."*/))
   }
-  
 }
