@@ -7,6 +7,6 @@ import models.Server
 object Application extends Controller {
   val s: Server = new Server("First")
   def index = Action {
-    Ok(views.html.index(s.showAll/*"Check your console now."*/))
+    Ok(views.html.index(s.showAll))
   }
 }
