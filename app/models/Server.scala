@@ -21,10 +21,9 @@ class Server(name: String) {
   def showAll = { // only descriptions for now
     var str: String = ""
     collection.foreach(s => str += s.get("details") + " ")
-    //    for (i <- 1 to collection.size) {
-    //      str += collection.//get(i).toString()
-    //      str += " "
-    //    }
     str
+  }
+  def getCollection(name: String) = {
+    mongoDB(name)
   }
 }

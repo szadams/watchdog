@@ -1,6 +1,9 @@
-@(message: String)
+@(message: String, servers: com.mongodb.casbah.MongoCollection)
 
 @main("Index") {
-
+	<strong>@Messages("views.index.hello")</strong><br />
     @message
+    
+    
+    
 }
