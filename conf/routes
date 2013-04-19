@@ -3,7 +3,15 @@
 # ~~~~
 
 # Home page
-GET     /                           controllers.Application.index
+GET     /                           controllers.ServerController.index
 
 # Map static resources from the /public folder to the /assets URL path
 GET     /assets/*file               controllers.Assets.at(path="/public", file)
+
+# Authentication
+GET     /login                      controllers.Login.login
+
+# Servers
+GET     /servers                      controllers.ServerController.index
+GET     /servers/create               controllers.ServerController.create
+#GET     /servers/details/:id          controllers.ServerController.details(id: org.bson.types.ObjectId)

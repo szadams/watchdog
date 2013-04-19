@@ -1,0 +1,23 @@
+@(servers: com.mongodb.casbah.MongoCollection)
+
+@main("Servers") {
+  <strong>@Messages("views.index.hello")</strong><br /><br />
+      
+  <table class="table table-hover table-bordered table-striped">
+    <thead>
+      <tr>
+        <th class="span1 centered">#</th>
+        <th>Server name</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for((item, index) <- servers.zipWithIndex) {
+      <tr>
+        <td class="centered">@{index+1}</td>
+        <td>@item.get("name")</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <a href="@routes.ServerController.create" class="btn">Create new server</a>
+}

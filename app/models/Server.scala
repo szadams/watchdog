@@ -1,16 +1,24 @@
 package models
 
-import com.mongodb.casbah.Imports._
-import play.api.Play
+import org.bson.types.ObjectId
 
-class Server(name: String) {
-  val hostname = Play.current.configuration.getString("mongohost").getOrElse(null)
-  val port = Play.current.configuration.getString("mongoport").getOrElse(null).toInt
-  val dbname = Play.current.configuration.getString("mongodbname").getOrElse(null)
-  val mongoConn = MongoConnection(hostname, port)
-  val mongoDB = mongoConn(dbname)
+case class Server(id: ObjectId, ip: String, name: String, physicalLocation: String, details: String)
+//class Server{
+// val id: ObjectId 
+// val ip: String
+// val name: String
+// val physicalLocation: String
+// val details: String
+//}
 
-  val collection = mongoDB("servers")
+
+//  val hostname = Play.current.configuration.getString("mongohost").getOrElse(null)
+//  val port = Play.current.configuration.getString("mongoport").getOrElse(null).toInt
+//  val dbname = Play.current.configuration.getString("mongodbname").getOrElse(null)
+//  val mongoConn = MongoConnection(hostname, port)
+//  val mongoDB = mongoConn(dbname)
+
+//  val collection = mongoDB("servers")
 
   //  val id = 
   //  val ip
@@ -18,12 +26,11 @@ class Server(name: String) {
   //  val physicalLocation
   //  val details
   //  
-  def showAll = { // only descriptions for now
-    var str: String = ""
-    collection.foreach(s => str += s.get("details") + " ")
-    str
-  }
-  def getCollection(name: String) = {
-    mongoDB(name)
-  }
-}
+//  def showAll = { // only descriptions for now
+//    var str: String = ""
+//    collection.foreach(s => str += s.get("details") + " ")
+//    str
+//  }
+//  def getCollection(name: String) = {
+//    mongoDB(name)
+//  }
