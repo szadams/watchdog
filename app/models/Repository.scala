@@ -2,6 +2,7 @@ package models
 
 import play.api.Play
 import com.mongodb.casbah.Imports._
+import com.mongodb.casbah.commons.MongoDBObject
 
 object Repository {
   val hostname = Play.current.configuration.getString("mongohost").getOrElse(null)
@@ -14,6 +15,11 @@ object Repository {
     mongoDB(name)
   }
 
+  def getServer(id: String) = {
+    val tempId = new ObjectId(id)
+    mongoDB("servers").findOne(MongoDBObject("_id"-> id))
+  }
+  
   def addServer(s: Server) = {
     val newServer = MongoDBObject(
       "_id" -> s.id,

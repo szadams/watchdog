@@ -15,6 +15,7 @@
       <tr>
         <td class="centered">@{index+1}</td>
         <td>@item.get("name")</td>
+        @**<td><a href="@routes.ServerController.details(item.get("_id").toString())">@item.get("name")</a></td>**@
       </tr>
       }
     </tbody>
