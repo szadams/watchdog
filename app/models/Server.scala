@@ -3,6 +3,7 @@ package models
 import org.bson.types.ObjectId
 
 case class Server(id: ObjectId, ip: String, name: String, physicalLocation: String, details: String)
+
 //class Server{
 // val id: ObjectId 
 // val ip: String

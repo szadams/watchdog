@@ -1,2 +1,3 @@
 views.index.hello = Welcome to Kainos Watchdog portal!
 views.index.title = Welcome
+views.server.create.submit = Create
