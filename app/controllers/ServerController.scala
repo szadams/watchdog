@@ -28,22 +28,22 @@ object ServerController extends Controller {
   def create = Action {
     Ok(views.html.servers.create(createServerForm))
   }
-    def save = Action { implicit request =>
-      val newCreateServerForm = this.createServerForm.bindFromRequest()
-      
-  //    val serv = MongoDBObject(
-  //      "ip" -> nonEmptyText,
-  //      "name" -> nonEmptyText,
-  //      "physicalLocation" -> nonEmptyText,
-  //      "details" -> nonEmptyText
-  //    )
-      
-      newCreateServerForm.fold(hasErrors = {form => Redirect(routes.ServerController.create())}, 
-          success = {newServer => 
-          	Repository.addServer(newServer)
-          	Ok(views.html.servers.index(coll))
+  def save = Action { implicit request =>
+    val newCreateServerForm = this.createServerForm.bindFromRequest()
+
+    //    val serv = MongoDBObject(
+    //      "ip" -> nonEmptyText,
+    //      "name" -> nonEmptyText,
+    //      "physicalLocation" -> nonEmptyText,
+    //      "details" -> nonEmptyText
+    //    )
+
+    newCreateServerForm.fold(hasErrors = { form => Redirect(routes.ServerController.create()) },
+      success = { newServer =>
+        Repository.addServer(newServer)
+        Ok(views.html.servers.index(coll))
       })
-    }
+  }
   //  def details(id: String) = Action {
   //    val newId = new ObjectId(id)
   //    val newObj = Repository.getServer(id)//.getOrElse(new MongoDBObject)
