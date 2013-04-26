@@ -15,4 +15,4 @@ GET     /login                      controllers.Login.login
 GET     /servers                      controllers.ServerController.index
 GET     /servers/create               controllers.ServerController.create
 GET     /servers/save               controllers.ServerController.save
-#GET     /servers/details/:id          controllers.ServerController.details(id: String)
+GET     /servers/details/:id          controllers.ServerController.details(id: String)

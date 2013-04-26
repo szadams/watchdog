@@ -12,7 +12,6 @@ import com.mongodb.casbah.commons.MongoDBObject
 import com.mongodb.DBObject
 
 object ServerController extends Controller {
-  //  val coll = Repository.getCollection("servers")
 
   private val createServerForm: Form[Server] = Form(
     mapping(
@@ -23,8 +22,6 @@ object ServerController extends Controller {
       "details" -> nonEmptyText)(Server.apply)(Server.unapply))
 
   def index = Action {
-//    val coll = Server.getCollection("servers")
-
     Ok(views.html.servers.index(Server.all))
     // TODO: routes.ServerController.list
   }
@@ -34,24 +31,14 @@ object ServerController extends Controller {
   def save = Action { implicit request =>
     val newCreateServerForm = this.createServerForm.bindFromRequest()
 
-    //    val serv = MongoDBObject(
-    //      "ip" -> nonEmptyText,
-    //      "name" -> nonEmptyText,
-    //      "physicalLocation" -> nonEmptyText,
-    //      "details" -> nonEmptyText
-    //    )
-
     newCreateServerForm.fold(hasErrors = { form => Redirect(routes.ServerController.create()) },
       success = { newServer =>
-
         Server.save(newServer)
-//        val coll = Repository.getCollection("servers")
         Ok(views.html.servers.index(Server.all))
       })
   }
-  //  def details(id: String) = Action {
-  //    val newId = new ObjectId(id)
-  //    val newObj = Repository.getServer(id)//.getOrElse(new MongoDBObject)
-  //    Ok(views.html.servers.details(newObj)) //asInstanceOf[com.mongodb.casbah.Imports.DBObject]
-  //  }
+  def details(id: String) = Action {
+    val newObj = Server.findById(new ObjectId(id))
+    Ok(views.html.servers.details(newObj.getOrElse(null))) //asInstanceOf[com.mongodb.casbah.Imports.DBObject]
+  }
 }

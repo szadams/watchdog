@@ -28,7 +28,7 @@
 		<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 		<div class="nav-collapse collapse">
 		  <ul class="nav">
-		    <li class="active"><a href="@routes.ServerController.index">Servers</a></li>
+		    <li><a href="@routes.ServerController.index">Servers</a></li>
 		    <li><a href="#">Users</a></li>
 		    <li><a href="#about">About</a></li>
 		    <li><a href="#contact">Contact</a></li>
@@ -50,8 +50,21 @@
 	</div><!-- /.navbar-wrapper -->   
     
     	<div class="container main-content">
-        	@content
-        </div>
+    	
+      	@**if(flash.get("success").isDefined){
+          <div class="alert alert-success">
+            @flash.get("success")
+          </div>
+        }
+        
+        @if(flash.get("error").isDefined){
+          <div class="alert alert-error">
+            @flash.get("error")
+          </div>
+        }**@
+    	
+       	@content
+      </div>
         
         <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.at("javascripts/bootstrap.min.js")" type="text/javascript"></script>
