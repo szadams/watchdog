@@ -21,8 +21,8 @@ object ServerController extends Controller {
       "physicalLocation" -> nonEmptyText,
       "details" -> nonEmptyText)(Server.apply)(Server.unapply))
 
-  def index = Action {
-    Ok(views.html.servers.index(Server.all))
+  def list = Action {
+    Ok(views.html.servers.list(Server.all))
     // TODO: routes.ServerController.list
   }
   def create = Action {
@@ -34,11 +34,11 @@ object ServerController extends Controller {
     newCreateServerForm.fold(hasErrors = { form => Redirect(routes.ServerController.create()) },
       success = { newServer =>
         Server.save(newServer)
-        Ok(views.html.servers.index(Server.all))
+        Ok(views.html.servers.list(Server.all))
       })
   }
-  def details(id: String) = Action {
+  def view(id: String) = Action {
     val newObj = Server.findById(new ObjectId(id))
-    Ok(views.html.servers.details(newObj.getOrElse(null))) //asInstanceOf[com.mongodb.casbah.Imports.DBObject]
+    Ok(views.html.servers.view(newObj.getOrElse(null)))
   }
 }
