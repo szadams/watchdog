@@ -15,7 +15,7 @@ object ServerController extends Controller {
 
   private val createServerForm: Form[Server] = Form(
     mapping(
-      "_id" -> ignored(new ObjectId),
+      "_id" -> ignored(new ObjectId), // TODO: to check it, this may cause problems in mongo
       "ip" -> nonEmptyText,
       "name" -> nonEmptyText,
       "physicalLocation" -> nonEmptyText,
