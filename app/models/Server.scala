@@ -1,37 +1,67 @@
 package models
 
 import org.bson.types.ObjectId
+import com.mongodb.casbah.Imports._
+import com.mongodb.casbah.commons.MongoDBObject
 
-case class Server(id: ObjectId, ip: String, name: String, physicalLocation: String, details: String)
+case class Server(id: ObjectId, ip: String, name: String, physicalLocation: String, details: String) extends RepositoryObject
 
-//class Server{
-// val id: ObjectId 
-// val ip: String
-// val name: String
-// val physicalLocation: String
-// val details: String
-//}
+object Server extends RepositoryAccess[Server] {
 
+  override val collectionName = "servers"
 
-//  val hostname = Play.current.configuration.getString("mongohost").getOrElse(null)
-//  val port = Play.current.configuration.getString("mongoport").getOrElse(null).toInt
-//  val dbname = Play.current.configuration.getString("mongodbname").getOrElse(null)
-//  val mongoConn = MongoConnection(hostname, port)
-//  val mongoDB = mongoConn(dbname)
+  override def toModel(dbObject: MongoDBObject) = {
+    Server(
+      dbObject.as[ObjectId]("_id"),
+      dbObject.as[String]("ip"),
+      dbObject.as[String]("name"),
+      dbObject.as[String]("physicalLocation"),
+      dbObject.as[String]("details"))
+  }
 
-//  val collection = mongoDB("servers")
+  override def toMongoDBObject(server: Server): MongoDBObject = {
+    MongoDBObject(
+      "_id" -> server.id,
+      "ip" -> server.ip,
+      "name" -> server.name,
+      "physicalLocation" -> server.physicalLocation,
+      "details" -> server.details)
+  }
 
-  //  val id = 
-  //  val ip
-  //  val name
-  //  val physicalLocation
-  //  val details
+  def findByName(name: String) = {
+    mongoDB(collectionName).findOne(MongoDBObject("name" -> name)).map(toModel(_))
+  }
+
+  //  def getServer(id: String) = {
+  //    val tempId = new ObjectId(id)
+  //    mongoDB("servers").findOne(MongoDBObject("_id"-> id))
+  //  }
   //  
-//  def showAll = { // only descriptions for now
-//    var str: String = ""
-//    collection.foreach(s => str += s.get("details") + " ")
-//    str
-//  }
-//  def getCollection(name: String) = {
-//    mongoDB(name)
-//  }
+  //  def addServer(s: Server) = {
+  //    val newServer = MongoDBObject(
+  //      "_id" -> s.id,
+  //      "ip" -> s.ip,
+  //      "name" -> s.name,
+  //      "physicalLocation" -> s.physicalLocation,
+  //      "details" -> s.details)
+  //    mongoDB("servers") += newServer
+  //  }
+  //
+  //  def removeServer(id: ObjectId) = {
+  //    mongoDB("servers").remove(MongoDBObject("_id" -> id))
+  //  }
+  //
+  //  def removeServer(id: String) = {
+  //    val tempId = new ObjectId(id)
+  //    mongoDB("servers").remove(MongoDBObject("_id" -> tempId))
+  //  }
+  //
+  //  def removeAllServers() = {
+  //    mongoDB("servers").remove(MongoDBObject.empty)
+  //  }
+  //
+  ////  def editServer(id: ObjectId, element: String, newValue: String) = {
+  ////    val obj = mongoDB("servers").findOne(MongoDBObject("_id" -> id))
+  ////    mongoDB("servers").update(obj, $set("name" -> "Third"))
+  ////  }
+}

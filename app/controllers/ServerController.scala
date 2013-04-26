@@ -6,13 +6,13 @@ import org.bson.types.ObjectId
 import play.api.data._
 import play.api.data.Form
 import play.api.data.Forms._
-import models.Repository
+import models.RepositoryAccess
 import models.Server
 import com.mongodb.casbah.commons.MongoDBObject
 import com.mongodb.DBObject
 
 object ServerController extends Controller {
-  val coll = Repository.getCollection("servers")
+  //  val coll = Repository.getCollection("servers")
 
   private val createServerForm: Form[Server] = Form(
     mapping(
@@ -23,7 +23,10 @@ object ServerController extends Controller {
       "details" -> nonEmptyText)(Server.apply)(Server.unapply))
 
   def index = Action {
-    Ok(views.html.servers.index(coll))
+//    val coll = Server.getCollection("servers")
+
+    Ok(views.html.servers.index(Server.all))
+    // TODO: routes.ServerController.list
   }
   def create = Action {
     Ok(views.html.servers.create(createServerForm))
@@ -40,8 +43,10 @@ object ServerController extends Controller {
 
     newCreateServerForm.fold(hasErrors = { form => Redirect(routes.ServerController.create()) },
       success = { newServer =>
-        Repository.addServer(newServer)
-        Ok(views.html.servers.index(coll))
+
+        Server.save(newServer)
+//        val coll = Repository.getCollection("servers")
+        Ok(views.html.servers.index(Server.all))
       })
   }
   //  def details(id: String) = Action {
