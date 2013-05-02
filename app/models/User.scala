@@ -60,10 +60,13 @@ object User extends RepositoryAccess[User] {
    * Authenticate a User.
    */
   def authenticate(email: String, password: String): Option[User] = {
-    Logger.info("User object, Action: authenticate")
-    val auth = mongoDB(collectionName).findOne(MongoDBObject("email" -> email, "password" -> password)) //.map(toModel(_))
-    val first = toModel(auth.get)
-    Option(first) // Maybe here is sth messed
+    val auth = mongoDB(collectionName).findOne(MongoDBObject("email" -> email, "password" -> password))
+    if (auth.isDefined) {
+      Option(toModel(auth.get))
+    } else 
+    {
+      Option(null)
+    }
   }
 
   /**

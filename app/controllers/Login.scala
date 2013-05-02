@@ -10,18 +10,12 @@ object Login extends Controller {
 
   // Authentication
 
-//  val loginForm = Form(
-//    tuple("email" -> nonEmptyText,
-//      "password" -> nonEmptyText) verifying ("Invalid email or password", result => result match {
-//        case (email, password) => User.authenticate(email, password).isDefined
-//      }))
-
   val loginForm = Form(
-    tuple("email" -> text,
-      "password" -> text) verifying ("Invalid email or password", result => result match {
+    tuple("email" -> nonEmptyText,
+      "password" -> nonEmptyText) verifying ("Invalid email or password", result => result match {
         case (email, password) => User.authenticate(email, password).isDefined
       }))
-  
+
   // Login page
 
   def login = Action { implicit request =>
@@ -31,7 +25,6 @@ object Login extends Controller {
   // Handle login form submission
 
   def authenticate = Action { implicit request =>
-    Logger.info("Action: authenticate")
     loginForm.bindFromRequest.fold(
       formWithErrors => BadRequest(views.html.login(formWithErrors)),
       user => Redirect(routes.ServerController.list).withSession("email" -> user._1))
