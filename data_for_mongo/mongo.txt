@@ -1,3 +1,4 @@
+// SERVERS
 {
 	"_id" : ObjectId("516d527e0b5eea9fecdd4b69"),
 	"ip" : "192.168.0.1",
@@ -13,3 +14,22 @@
 	"details" : "Second server of Kainos office server room. It has running services for checking office"
 }
 
+// USERS
+{
+	"_id" : ObjectId("517e1ca0e84c5feae738abbf"),
+	"email" : "user1@kainos.com",
+	"name" : "user1",
+	"password" : "user"
+}
+{
+	"_id" : ObjectId("517e1dd1e84c5feae738abc0"),
+	"email" : "user2@kainos.com",
+	"name" : "user2",
+	"password" : "user"
+}
+{
+	"_id" : ObjectId("517e1dd9e84c5feae738abc1"),
+	"email" : "user3@kainos.com",
+	"name" : "user3",
+	"password" : "user"
+}

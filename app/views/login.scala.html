@@ -1,12 +1,37 @@
-@()
+@(form: Form[(String, String)])(implicit flash: Flash)
 @loginMain("Log in") {
-  <form class="form-signin">
+  <!--<form class="form-signin">-->
+  <div class="form-signin">
     <h2 class="form-signin-heading">Please sign in</h2>
-    <input type="text" class="input-block-level" placeholder="Email">
-    <input type="password" class="input-block-level" placeholder="Password">
-    <!--<label class="checkbox">
+    
+    @helper.form(routes.Login.authenticate){
+      
+       @form.globalError.map { error =>
+                <p class="error">
+                    @error.message
+                </p>
+            }
+            
+            @flash.get("success").map { message =>
+                <p class="success">
+                    @message
+                </p>
+            }
+      <p>
+        <input type="email" id="email" name="email" placeholder="Email" class="input-block-level" placeholder="Email" value="@form("email").value" autofocus>
+      </p>
+      <p>
+        <input type="password" name="password" id="password" class="input-block-level" placeholder="Password">
+      </p>
+      <!--<label class="checkbox">
       <input type="checkbox" value="remember-me"> Remember me
-    </label>-->
-    <button class="btn btn-large btn-primary" type="submit">Sign in</button>
-  </form>
+      </label>-->
+      @**helper.inputText(form("email"))
+      @helper.inputText(form("password"))**@
+      <p>
+        <button type="submit" id="loginbutton" class="btn btn-primary">Sign in</button>
+      </p>
+    }
+  </div>
+  <!--</form>-->
 }

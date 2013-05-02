@@ -1,6 +1,6 @@
-@(server: models.Server)
+@(server: models.Server, user: User)
 
-@main("Server details") {
+@main("Server details", user) {
     <table class="table table-hover">
       <!--<thead>
         <tr>

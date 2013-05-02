@@ -1,7 +1,7 @@
-@(createForm: Form[Server])
+@(createForm: Form[Server], user: User)
 @import helper._
 @import helper.twitterBootstrap._
-@main("Create new server") {
+@main("Create new server", user) {
 	@helper.form(action = routes.ServerController.save()) {
 		<fieldset>
 			@helper.inputText(createForm("ip"))

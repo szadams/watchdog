@@ -1,6 +1,6 @@
-@(servers: Iterable[models.Server])
+@(servers: Iterable[models.Server], user: User)
 
-@main("Servers") {
+@main("Servers", user) {
   <strong>@Messages("views.index.hello")</strong><br /><br />
       
   <table class="table table-hover table-bordered table-striped">
