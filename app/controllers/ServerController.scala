@@ -10,6 +10,7 @@ import models.RepositoryAccess
 import models._
 import com.mongodb.casbah.commons.MongoDBObject
 import com.mongodb.DBObject
+import play.data.validation.Validation
 
 object ServerController extends Controller with Secured {
 
@@ -22,9 +23,7 @@ object ServerController extends Controller with Secured {
       "details" -> nonEmptyText)(Server.apply)(Server.unapply))
 
   def list = IsAuthenticated { username => _ =>
-    Logger.info("I'm in list action")
     User.findByEmail(username).map { user =>
-      Logger.info("Right before redir to list view")
       Ok(views.html.servers.list(Server.all, user))
       
     }.getOrElse(Forbidden)    
