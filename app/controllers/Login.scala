@@ -5,15 +5,16 @@ import play.api.mvc._
 import play.api.data._
 import play.api.data.Forms._
 import models.User
+import play.i18n.Messages
 
 object Login extends Controller {
 
   // Authentication
 
   val loginForm = Form(
-    tuple("email" -> nonEmptyText.verifying("Invalid email address", email =>
+    tuple("email" -> nonEmptyText.verifying(Messages.get("views.login.wrongEmail"), email =>
       email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")),
-      "password" -> nonEmptyText) verifying ("Invalid email or password", result => result match {
+      "password" -> nonEmptyText) verifying (Messages.get("views.login.validation"), result => result match {
         case (email, password) => User.authenticate(email, password).isDefined
       }))
 
@@ -34,7 +35,7 @@ object Login extends Controller {
   // Logout and clean the session
 
   def logout = Action {
-    Redirect(routes.Login.login).withNewSession.flashing("success" -> "You've been logged out")
+    Redirect(routes.Login.login).withNewSession.flashing("success" -> Messages.get("views.login.loggedout"))
   }
 }
 

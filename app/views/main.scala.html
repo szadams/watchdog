@@ -24,21 +24,21 @@
 		  <span class="icon-bar"></span>
 		  <span class="icon-bar"></span>
 		</button>
-		<a class="brand" href="#">Watchdog</a>
+		<a class="brand" href="@routes.ServerController.list">Watchdog</a>
 		<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 		<div class="nav-collapse collapse">
 		  <ul class="nav">
-		    <li><a href="@routes.ServerController.list">Servers</a></li>
-		    <li><a href="#">Users</a></li>
-		    <li><a href="#about">About</a></li>
-		    <li><a href="#contact">Contact</a></li>
+		    <li><a href="@routes.ServerController.list">@Messages("views.servers")</a></li>
+		    <li><a href="#">@Messages("views.users")</a></li>
+		    <li><a href="#about">@Messages("views.about")</a></li>
+		    <li><a href="#contact">@Messages("views.contact")</a></li>
 		    <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
 		    <li class="dropdown">
 		      <a href="#" class="dropdown-toggle" data-toggle="dropdown">@user.name <b class="caret"></b></a>
 		      <ul class="dropdown-menu">
-			<li><a href="#">Edit user</a></li>
+			<li><a href="#">@Messages("views.edituser")</a></li>
 			<li class="divider"></li>
-			<li><a href="@routes.Login.logout()">Logout</a></li><!-- TODO: Logged as 'user's name' -->
+			<li><a href="@routes.Login.logout()">@Messages("views.logout")</a></li><!-- TODO: Logged as 'user's name' -->
 		      </ul>
 		    </li>
 		  </ul>

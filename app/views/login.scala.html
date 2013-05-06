@@ -1,7 +1,7 @@
 @(form: Form[(String, String)])(implicit flash: Flash)
 @loginMain("Log in") {
   <div class="form-signin">
-    <h2 class="form-signin-heading">Please sign in</h2>
+    <h2 class="form-signin-heading">@Messages("views.login.signin")</h2>
     
     @helper.form(routes.Login.authenticate){
       
@@ -26,7 +26,7 @@
       <input type="checkbox" value="remember-me"> Remember me
       </label>-->
       <p>
-        <button type="submit" id="loginbutton" class="btn btn-primary">Sign in</button>
+        <button type="submit" id="loginbutton" class="btn btn-primary">@Messages("views.login.submit")</button>
       </p>
     }
   </div>

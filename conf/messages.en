@@ -1,3 +1,26 @@
+views.servers = Servers
+views.users = Users
+views.about = About
+views.contact = Contact
+views.edituser = Edit user
+views.logout = Logout
+
+views.login.signin = Please sign in
+views.login.submit = Sign in
+views.login.wrongEmail = Invalid email address
+views.login.validation = Invalid email or password
+views.login.loggedout = You've been logged out
+
 views.index.hello = Welcome to Kainos Watchdog portal!
 views.index.title = Welcome
 views.server.create.submit = Create
+views.server.create.ipInvalid = IP address doesn't match
+views.server.create.locationInvalid = Location should contain only letters and digits
+
+views.server.list.createNew = Create new server
+views.server.list.name = Server name
+
+views.server.view.name = Name
+views.server.view.ip = IP address
+views.server.view.location = Physical location
+views.server.view.details = Details
