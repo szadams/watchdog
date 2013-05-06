@@ -17,7 +17,7 @@ object ServerController extends Controller with Secured {
   private val createServerForm: Form[Server] = Form(
     mapping(
       "_id" -> ignored(new ObjectId), // TODO: to check it, this may cause problems in mongo
-      "ip" -> nonEmptyText,
+      "ip" -> nonEmptyText.verifying("Ip address doesn't match", ip => ip.matches("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")),
       "name" -> nonEmptyText,
       "physicalLocation" -> nonEmptyText,
       "details" -> nonEmptyText)(Server.apply)(Server.unapply))

@@ -47,11 +47,13 @@ object User extends RepositoryAccess[User] {
    * Authenticate a User.
    */
   def authenticate(email: String, password: String): Option[User] = {
-    val auth = mongoDB(collectionName).findOne(MongoDBObject("email" -> email, "password" -> password))
-    if (auth.isDefined) {
-      Option(toModel(auth.get))
-    } else 
-    {
+    if (email.endsWith("@kainos.com")) {
+      val auth = mongoDB(collectionName).findOne(MongoDBObject("email" -> email, "password" -> password))
+      if (auth.isDefined)
+        Option(toModel(auth.get))
+      else
+        Option(null)
+    } else {
       Option(null)
     }
   }

@@ -11,7 +11,8 @@ object Login extends Controller {
   // Authentication
 
   val loginForm = Form(
-    tuple("email" -> nonEmptyText,
+    tuple("email" -> nonEmptyText.verifying("Invalid email address", email =>
+      email.matches("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$")),
       "password" -> nonEmptyText) verifying ("Invalid email or password", result => result match {
         case (email, password) => User.authenticate(email, password).isDefined
       }))
