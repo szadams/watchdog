@@ -1,4 +1,4 @@
-@(title: String, user: User)(content: Html)
+@(title: String, user: User, language: play.api.i18n.Lang)(content: Html)
 
 <!DOCTYPE html>
 
@@ -28,17 +28,17 @@
 		<!-- Responsive Navbar Part 2: Place all navbar contents you want collapsed withing .navbar-collapse.collapse. -->
 		<div class="nav-collapse collapse">
 		  <ul class="nav">
-		    <li><a href="@routes.ServerController.list">@Messages("views.servers")</a></li>
-		    <li><a href="#">@Messages("views.users")</a></li>
-		    <li><a href="#about">@Messages("views.about")</a></li>
-		    <li><a href="#contact">@Messages("views.contact")</a></li>
+		    <li><a href="@routes.ServerController.list">@Messages("views.servers")(language)</a></li>
+		    <li><a href="#">@Messages("views.users")(language)</a></li>
+		    <li><a href="#about">@Messages("views.about")(language)</a></li>
+		    <li><a href="#contact">@Messages("views.contact")(language)</a></li>
 		    <!-- Read about Bootstrap dropdowns at http://twitter.github.com/bootstrap/javascript.html#dropdowns -->
 		    <li class="dropdown">
 		      <a href="#" class="dropdown-toggle" data-toggle="dropdown">@user.name <b class="caret"></b></a>
 		      <ul class="dropdown-menu">
-			<li><a href="#">@Messages("views.edituser")</a></li>
+			<li><a href="#">@Messages("views.edituser")(language)</a></li>
 			<li class="divider"></li>
-			<li><a href="@routes.Login.logout()">@Messages("views.logout")</a></li><!-- TODO: Logged as 'user's name' -->
+			<li><a href="@routes.Login.logout()">@Messages("views.logout")(language)</a></li><!-- TODO: Logged as 'user's name' -->
 		      </ul>
 		    </li>
 		  </ul>

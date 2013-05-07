@@ -1,6 +1,6 @@
-@(server: models.Server, user: User)
+@(server: models.Server, user: User, language: play.api.i18n.Lang)
 
-@main("Server details", user) {
+@main("Server details", user, language) {
     <table class="table table-hover">
       <!--<thead>
         <tr>

@@ -1,7 +1,7 @@
-@(servers: Iterable[models.Server], user: User)
+@(servers: Iterable[models.Server], user: User, language: play.api.i18n.Lang)
 
-@main("Servers", user) {
-  <strong>@Messages("views.index.hello")</strong><br /><br />
+@main("Servers", user, language) {
+  <strong>@Messages("views.index.hello")(language)</strong><br /><br />
       
   <table class="table table-hover table-bordered table-striped">
     <thead>
@@ -19,5 +19,5 @@
       }
     </tbody>
   </table>
-  <a href="@routes.ServerController.create" class="btn">@Messages("views.server.list.createNew")</a>
+  <a href="@routes.ServerController.create" class="btn">@Messages("views.server.list.createNew")(language)</a>
 }
