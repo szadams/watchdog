@@ -1,4 +1,4 @@
-@(title: String, user: User, language: play.api.i18n.Lang)(content: Html)
+@(title: String, user: User, language: play.api.i18n.Lang)(content: Html)(implicit flash: Flash)
 
 <!DOCTYPE html>
 
@@ -50,6 +50,18 @@
 	</div><!-- /.navbar-wrapper -->   
     
     	<div class="container main-content">
+    	  @if(flash.get("success").isDefined){
+          <div class="alert alert-success">
+            @flash.get("success")
+          </div>
+          }
+          
+        @if(flash.get("error").isDefined){
+          <div class="alert alert-error">
+            @flash.get("error")
+          </div>
+          }
+    	
        	@content
       </div>
         

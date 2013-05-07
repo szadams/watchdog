@@ -9,7 +9,7 @@ views.login.signin = Please sign in
 views.login.submit = Sign in
 views.login.wrongEmail = Invalid email address
 views.login.validation = Invalid email or password
-views.login.loggedout = You've been logged out
+views.login.loggedout = You have been logged out
 
 views.index.hello = Welcome to Kainos Watchdog portal!
 views.index.title = Welcome

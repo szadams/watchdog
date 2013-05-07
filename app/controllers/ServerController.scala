@@ -18,7 +18,7 @@ object ServerController extends Controller with Secured {
 
   private val createServerForm: Form[Server] = Form(
     mapping(
-      "_id" -> ignored(new ObjectId), // TODO: to check it, this may cause problems in mongo
+      "_id" -> ignored(new ObjectId),
       "ip" -> nonEmptyText.verifying(Messages("views.server.create.ipInvalid"), ip =>
         ip.matches("^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$")),
       "name" -> nonEmptyText,
@@ -49,10 +49,10 @@ object ServerController extends Controller with Secured {
 
         val newCreateServerForm = this.createServerForm.bindFromRequest()
 
-        newCreateServerForm.fold(hasErrors = { form => Redirect(routes.ServerController.create()) },
+        newCreateServerForm.fold(hasErrors = { form => Redirect(routes.ServerController.create()).flashing("error" -> "Something went wrong. It will not be saved.") },
           success = { newServer =>
             Server.save(newServer)
-            Ok(views.html.servers.list(Server.all, user, lang))
+            Redirect(routes.ServerController.list()).flashing("success" -> "New server created :)")
           })
       }.getOrElse(Forbidden)
   }

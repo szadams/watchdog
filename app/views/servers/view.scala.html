@@ -1,4 +1,4 @@
-@(server: models.Server, user: User, language: play.api.i18n.Lang)
+@(server: models.Server, user: User, language: play.api.i18n.Lang)(implicit flash: Flash)
 
 @main("Server details", user, language) {
     <table class="table table-hover">

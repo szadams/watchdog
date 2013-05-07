@@ -1,4 +1,4 @@
-@(createForm: Form[Server], user: User, language: play.api.i18n.Lang)
+@(createForm: Form[Server], user: User, language: play.api.i18n.Lang)(implicit flash: Flash)
 @import helper._
 @import helper.twitterBootstrap._
 @main("Create new server", user, language) {
@@ -7,7 +7,7 @@
 			@helper.inputText(createForm("ip"))
 			@helper.inputText(createForm("name"))
 			@helper.inputText(createForm("physicalLocation"))
-			@helper.inputText(createForm("details"))			
+			@helper.inputText(createForm("details"))
 		</fieldset>
 		<p><input type="submit" class="btn primary" value='@Messages("views.server.create.submit")'></p>
 	}

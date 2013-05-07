@@ -1,4 +1,4 @@
-@(servers: Iterable[models.Server], user: User, language: play.api.i18n.Lang)
+@(servers: Iterable[models.Server], user: User, language: play.api.i18n.Lang)(implicit flash: Flash)
 
 @main("Servers", user, language) {
   <strong>@Messages("views.index.hello")(language)</strong><br /><br />

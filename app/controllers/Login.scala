@@ -29,7 +29,7 @@ object Login extends Controller {
 
   def authenticate = Action { implicit request =>
     loginForm.bindFromRequest.fold(
-      formWithErrors => BadRequest(views.html.login(formWithErrors, lang)),
+      formWithErrors => BadRequest(views.html.login(formWithErrors, lang)).flashing("error" -> "Invalid username or password"),
       user => Redirect(routes.ServerController.list).withSession("email" -> user._1))
   }
 
