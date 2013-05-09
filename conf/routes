@@ -18,3 +18,9 @@ GET    /servers            controllers.ServerController.list
 GET    /servers/create     controllers.ServerController.create
 POST   /servers/save       controllers.ServerController.save
 GET    /servers/view/:id   controllers.ServerController.view(id: String)
+
+# Users
+GET    /users            controllers.UserController.list
+GET    /users/create       controllers.UserController.create
+POST   /users/save         controllers.UserController.save
+GET    /users/view/:id   controllers.UserController.view(id: String)

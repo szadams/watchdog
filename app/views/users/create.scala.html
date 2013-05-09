@@ -1,0 +1,23 @@
+@(createForm: Form[User], user: User, language: play.api.i18n.Lang)(implicit flash: Flash)
+@import helper._
+@import helper.twitterBootstrap._
+@main("Create new user", user, language) {
+	@helper.form(action = routes.UserController.save) {
+		<fieldset>
+		  <p>
+        <input type="email" id="email" name="email" size="20" placeholder="Email" class="input-block-level user-input" placeholder="Email" value="" autofocus>
+      </p>
+      <p>
+        <input type="text" name="name" id="name" class="input-block-level user-input" size="20" placeholder="Name">
+      </p>
+      <p>
+        <input type="password" name="password" id="password" class="input-block-level user-input" size="20" placeholder="Password">
+      </p>
+		  <p>
+        <input type="text" name="role" id="role" class="input-block-level user-input" size="20" placeholder="User's role">
+      </p>
+		
+		</fieldset>
+		<p><input type="submit" class="btn primary" value='@Messages("views.user.create.submit")'></p>
+	}
+}

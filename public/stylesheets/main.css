@@ -57,3 +57,7 @@ body {
 th.centered, td.centered{
    text-align: center;   
 }
+
+.user-input {
+  width: 220px
+}

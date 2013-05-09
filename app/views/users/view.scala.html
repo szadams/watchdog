@@ -1,0 +1,26 @@
+@(userToShow: models.User, user: User, language: play.api.i18n.Lang)(implicit flash: Flash)
+
+@main("User details", user, language) {
+    <table class="table table-hover">
+      <!--<thead>
+        <tr>
+          <th>Name</th>
+          <th>Details</th>
+        </tr>
+      </thead>-->
+      <tbody>
+        <tr>
+          <td>@Messages("views.user.view.email")</td>
+          <td>@userToShow.email</td>
+        </tr>
+        <tr>
+          <td>@Messages("views.user.view.name")</td>
+          <td>@userToShow.name</td>
+        </tr>
+        <tr>
+          <td>@Messages("views.user.view.role")</td>
+          <td>@userToShow.role</td>
+        </tr>
+      </tbody>
+    </table>
+}

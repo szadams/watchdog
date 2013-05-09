@@ -4,6 +4,9 @@ import org.bson.types.ObjectId
 import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.commons.MongoDBObject
 import play.api.Logger
+import play.api.data.Form
+import play.api.data.Forms._
+import play.api.i18n.Messages
 
 case class User(id: ObjectId, email: String, name: String, password: String, role: String) extends RepositoryObject
 
@@ -69,12 +72,12 @@ object User extends RepositoryAccess[User] {
     users += mongoUser
     user
   }
-  
+
   def isInRole(role: String, user: String): Boolean = {
     val userFromDB = mongoDB(collectionName).findOne(MongoDBObject("email" -> user)) // assuming that username is email
-    if(userFromDB.isDefined){
+    if (userFromDB.isDefined) {
       val userModel = toModel(userFromDB.getOrElse(null))
-      userModel.role.equals(role)      
+      userModel.role.equals(role)
     } else false
   }
 }

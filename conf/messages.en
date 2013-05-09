@@ -24,3 +24,13 @@ views.server.view.name = Name
 views.server.view.ip = IP address
 views.server.view.location = Physical location
 views.server.view.details = Details
+
+views.user.create.submit = Create user
+
+views.user.list.createNew = Create new user
+views.user.list.email = User's email
+
+views.user.view.name = Name
+views.user.view.email = Email
+views.user.view.password = Password
+views.user.view.role = Role

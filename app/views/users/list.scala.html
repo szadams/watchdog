@@ -1,0 +1,21 @@
+@(users: Iterable[models.User], user: User, language: play.api.i18n.Lang)(implicit flash: Flash)
+
+@main("Users", user, language) {
+  <table class="table table-hover table-bordered table-striped">
+    <thead>
+      <tr>
+        <th class="span1 centered">#</th>
+        <th>@Messages("views.user.list.email")</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for((item, index) <- users.zipWithIndex) {
+      <tr>
+        <td class="centered">@{index+1}</td>
+        <td><a href="@routes.UserController.view(item.id.toString())">@item.email</a></td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  <a href="@routes.UserController.create" class="btn">@Messages("views.user.list.createNew")(language)</a>
+}
