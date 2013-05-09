@@ -1,6 +1,17 @@
 @(form: Form[(String, String)], language: play.api.i18n.Lang)(implicit flash: Flash)
 @loginMain("Log in", language) {
   <div class="form-signin">
+    @if(flash.get("success").isDefined){
+          <div class="alert alert-success">
+            @flash.get("success")
+          </div>
+          }
+          
+        @if(flash.get("error").isDefined){
+          <div class="alert alert-error">
+            @flash.get("error")
+          </div>
+          }  
     <h2 class="form-signin-heading">@Messages("views.login.signin")</h2>
     
     @helper.form(routes.Login.authenticate){

@@ -5,7 +5,7 @@ import com.mongodb.casbah.Imports._
 import com.mongodb.casbah.commons.MongoDBObject
 import play.api.Logger
 
-case class User(id: ObjectId, email: String, name: String, password: String) extends RepositoryObject
+case class User(id: ObjectId, email: String, name: String, password: String, role: String) extends RepositoryObject
 
 object User extends RepositoryAccess[User] {
 
@@ -16,7 +16,8 @@ object User extends RepositoryAccess[User] {
       dbObject.as[ObjectId]("_id"),
       dbObject.as[String]("email"),
       dbObject.as[String]("name"),
-      dbObject.as[String]("password"))
+      dbObject.as[String]("password"),
+      dbObject.as[String]("role"))
   }
 
   override def toMongoDBObject(user: User): MongoDBObject = {
@@ -24,7 +25,8 @@ object User extends RepositoryAccess[User] {
       "_id" -> user.id,
       "email" -> user.email,
       "name" -> user.name,
-      "password" -> user.password)
+      "password" -> user.password,
+      "role" -> user.role)
   }
 
   // -- Queries
@@ -66,5 +68,13 @@ object User extends RepositoryAccess[User] {
     val mongoUser = toMongoDBObject(user)
     users += mongoUser
     user
+  }
+  
+  def isInRole(role: String, user: String): Boolean = {
+    val userFromDB = mongoDB(collectionName).findOne(MongoDBObject("email" -> user)) // assuming that username is email
+    if(userFromDB.isDefined){
+      val userModel = toModel(userFromDB.getOrElse(null))
+      userModel.role.equals(role)      
+    } else false
   }
 }

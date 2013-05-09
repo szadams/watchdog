@@ -64,6 +64,15 @@ trait Secured {
     Action(request => f(user)(request))
   }
 
+	//  def IsInRole(role: String)(f: => String => Request[AnyContent] => Result) = IsAuthenticated { user =>
+	//    request =>
+	//      if (User.isInRole(role, user)) {
+	//        f(user)(request)
+	//      } else {
+	//        Results.Forbidden
+	//      }
+	//  }
+
   /**
    * Check if the connected user is a member of this project.
    */

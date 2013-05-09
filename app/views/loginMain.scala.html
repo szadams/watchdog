@@ -44,18 +44,6 @@
   </head>
   <body>
     <div class="container">
-        @if(flash.get("success").isDefined){
-          <div class="alert alert-success">
-            @flash.get("success")
-          </div>
-          }
-          
-        @if(flash.get("error").isDefined){
-          <div class="alert alert-error">
-            @flash.get("error")
-          </div>
-          }
-          
        	@content
     </div>    
     <script src="@routes.Assets.at("javascripts/jquery-1.9.0.min.js")" type="text/javascript"></script>
